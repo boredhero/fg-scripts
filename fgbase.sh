@@ -52,3 +52,21 @@ echo -e "\033[1;33mMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
 echo ""
 echo -e "\033[1;33mWelcome to the Freedom Gateway Linux Installer!\033[0m"
 echo -e "\033[1;33mThis is the first of two scripts, and it will handle the tedium of getting the basic system installed automatically.\033[0m"
+echo -e ""
+read -p "In order for this to work, you need a wired connection. Do you have a network cable plugged in?" -n 1 -r
+echo -e ""
+if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    ip link
+    ping -c 3 www.google.com
+  fi
+timedatectl set-ntp true
+echo -e "\033[1;33mUpdate the system clock!\033[0m"
+echo -e "\033[1;33Beginning Disk Wipe and Partition...\033[0m"
+fdisk -l
+echo -e "\033[1;33m...Kill The Disk and All Her Data! Sacrifice the Bytes to the Ancient Ones!\033[0m"
+sgdisk --zap-all /dev/sda
+echo -e "\033[1;33m...Create /dev/sda\033[0m"
+sgdisk -g
+sgdisk -n 1:1MiB:512MiB /dev/sda
+sgdisk -n /dev/sda -N
