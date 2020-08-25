@@ -58,6 +58,7 @@ echo -e ""
 if [[ $REPLY =~ ^[Yy]$ ]]
   then
     ip link
+    dhcpcd
     ping -c 3 www.google.com
   fi
 timedatectl set-ntp true
@@ -67,6 +68,65 @@ fdisk -l
 echo -e "\033[1;33m...Kill The Disk and All Her Data! Sacrifice the Bytes to the Ancient Ones!\033[0m"
 sgdisk --zap-all /dev/sda
 echo -e "\033[1;33m...Create /dev/sda\033[0m"
-sgdisk -g
-sgdisk -n 1:1MiB:512MiB /dev/sda
-sgdisk -n /dev/sda -N
+sgdisk -g -n 1:1MiB:512MiB -t 1:ef00 -c 1:"EFI System Partition"/dev/sda
+sgdisk -n 2:513MiB:4608MiB -t 2:8200 -c 2:"Linux Swap Partition" /dev/sda
+sgdisk /dev/sda -N 3 -t 3:8304 -c 3:"Freedom Gateway"
+echo -e "\033[1:33m...Format /dev/sda1 as fat32\033[0m"
+mkfs.fat -F32 /dev/sda1
+echo -e "\033[1:33m...Format /dev/sda1 as Linux swap\033[0m"
+mkswap /dev/sda2
+swapon /dev/sda2
+echo -e "\033[1;33m...Format /dev/sda3 as ext4\033[0m"
+mkfs.ext4 /dev/sda3
+echo -e
+echo -e "\033[1:33m...Mounting filesystems\033[0m"
+mount /dev/sda3 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+echo -e "\033[1:33mInstalling essentials\033[0m"
+pacstrap /mnt base linux-lts linux-firmware
+echo -e "\033[1:33mGenerating an fstab\033[0m"
+genfstab -U /mnt >> /mnt/etc/genfstab
+echo -e "\033[1:33mchroot into system\033[0m"
+arch-chroot /mnt
+echo -e "\033[1:33m...HWCLOCK\033[0m"
+hwclock --systohc
+echo -e "\033[1:33m...Generate locales\033[0m"
+locale-gen
+echo -e "\033[1:33m...Set the hostname\033[0m"
+hostnamectl set-hostname freedomgatewayatm
+echo -e "\033[1:33m...Populate the hosts file\033[0m"
+echo '127.0.0.1 localhost' >> /etc/hosts
+echo '::1 localhost' >> /etc/hosts
+echo '127.0.1.1 freedomgatewayatm.localdomain freedomgatewayatm' >> /etc/hosts
+echo -e "\033[1:33mPacman prep\033[0m"
+yes | pacman -Sy
+yes | pacman -S sudo
+echo -e "\033[1:33m...Install networkmanager\033[0m"
+yes | sudo pacman -S networkmanager
+echo -e "\033[1:33m......Enable NetworkManager.service\033[0m"
+sudo systemctl enable NetworkManager.service
+echo -e "\033[1:33mPlease set the root password\033[0m"
+passwd
+echo -e "\033[1:33mInstall xorg\033[0m"
+sudo pacman -S --noconfirm xorg
+echo -e "\033[1:33m...Install kde plasma\033[0m"
+sudo pacman -S --noconfirm plasma
+echo -e "\033[1:33mMake a new user!\033[0m"
+useradd -m freedomgateway
+gpasswd -a freedomgateway wheel
+gpasswd -a freedomgateway rfkill
+gpasswd -a freedomgateway log
+gpasswd -a freedomgateway http
+echo -e "\033[1:33mInstall OpenJDK latest\033[0m"
+sudo pacman -S --noconfirm jdk-openjdk
+echo -e "\033[1:33mInstall and configure SDDM\033[0m"
+sudo pacman -S --noconfirm sddm
+systemctl enable sddm.service
+echo -e "\033[1:33mInstall firefox\033[0m"
+sudo pacman -S --noconfirm firefox
+echo -e "\033[1:33mInstall nemo\033[0m"
+sudo pacman -S --nonconfirm nemo
+echo -e "\033[1:33mTry to make an EFISTUB bootloader\033[0m"
+sudo pacman -S --noconfirm efibootmgr
+efibootmgr --disk /dev/sda --part 1 --create --label "FG ATM" --loader /vmlinuz-linux --unicode 'root=PARTUUID=BF934EC8-B3C2-4539-800D-1940DD71BDCB rw initrd=\initramfs-linux.img' --verbose
