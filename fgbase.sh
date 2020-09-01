@@ -89,5 +89,5 @@ echo -e "\033[1:33mGenerating an fstab\033[0m"
 genfstab -U /mnt >> /mnt/etc/genfstab
 echo -e "\033[1:33mchroot into system\033[0m"
 cp fgchroot.sh /mnt/
-chroot +x /mnt/fgchroot.sh
+chmod +x /mnt/fgchroot.sh
 arch-chroot /mnt ./fgchroot.sh
