@@ -5,10 +5,10 @@ FG install scripts WIP
 
 1. Plug in wired ethernet connection to nuc
 2. Boot up with vanilla arch installer (I will eventually make a custom ISO with the scripts already there)
-3. '''curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fgbase.sh'''
-4. '''curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fgchroot.sh'''
-5. '''chmod +x fgbase.sh'''
-6. '''./fgbase.sh'''
+3. `curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fgbase.sh`
+4. `curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fgchroot.sh`
+5. `chmod +x fgbase.sh`
+6. `./fgbase.sh`
 7. Confirm that you have an internet connection and the script should handle the rest.
 
 ## Special Notes
