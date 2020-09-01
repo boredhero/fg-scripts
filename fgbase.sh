@@ -60,6 +60,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
     dhcpcd
     ping -c 3 www.google.com
   fi
+curl -O https://github.com/boredhero/fg-scripts/blob/master/fgchroot.sh
 timedatectl set-ntp true
 echo -e "\033[1;33mUpdate the system clock!\033[0m"
 echo -e "\033[1;33Beginning Disk Wipe and Partition...\033[0m"
