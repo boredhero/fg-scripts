@@ -113,6 +113,6 @@ pacman -S --noconfirm grub efibootmgr dosfstools os-prober mtools
 # this does not work do not use the efibootmgr command. we're gonna try grub silent now.
 mkdir /boot/EFI
 mount /dev/sda1 /boot/EFI
-grub-install --target=x86_64-efi --efidirectory=/boot/EFI --bootloader-id=freedom_gateway_atm --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=freedom_gateway_atm --recheck
 # Edit the things to add the flag you need for quiet boot here BEFORE you run the make config command for GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
+#grub-mkconfig -o /boot/grub/grub.cfg
