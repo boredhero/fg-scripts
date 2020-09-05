@@ -112,9 +112,8 @@ pacman -S --noconfirm grub efibootmgr dosfstools os-prober mtools
 #efibootmgr --disk /dev/sda --part 1 --create --label "FG ATM" --loader /vmlinuz-linux --unicode 'root=PARTUUID=BF934EC8-B3C2-4539-800D-1940DD71BDCB rw initrd=\initramfs-linux.img' --verbose
 # this does not work do not use the efibootmgr command. we're gonna try grub silent now.
 mkdir /boot/EFI
+mount /dev/sda1 /boot/EFI/
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=freedom_gateway_atm --recheck
 sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
 echo 'GRUB_HIDDEN_TIMEOUT_QUIET=true' >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
-exit
-reboot now
