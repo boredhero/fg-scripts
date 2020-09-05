@@ -69,7 +69,7 @@ echo -e "\033[1;33m...Kill The Disk and All Her Data! Sacrifice the Bytes to the
 sgdisk --zap-all /dev/sda
 echo -e "\033[1;33m...Create /dev/sda\033[0m"
 sleep 3
-sgdisk -g -n 1:1MiB:512MiB -t 1:ef00 -c 1:"EFI System Partition"/dev/sda
+sgdisk -g -n 1:1MiB:512MiB -t 1:ef00 -c 1:"EFI System Partition" /dev/sda
 sgdisk -n 2:513MiB:4608MiB -t 2:8200 -c 2:"Linux Swap Partition" /dev/sda
 sgdisk /dev/sda -N 3 -t 3:8304 -c 3:"Freedom Gateway"
 echo -e "\033[1:33m...Format /dev/sda1 as fat32\033[0m"
