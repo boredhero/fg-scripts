@@ -1,17 +1,23 @@
 # fg-scripts
 FG install scripts WIP
 
-## Usage
+## **WARNING: PLEASE READ THIS SECTION BEFORE USING THIS SCRIPT**
+1. Under ***NO CIRCUMSTANCES*** should you ever use this on a machine that is not isolated or a VM
+  * This script **WILL** destroy any and all data on the first disk in the machine it is plugged into and clean install a customized arch linux on it.
+    * You **WILL** irrevocably lose any data previously on the main hard disk in the machine you install this on!!!
+  * Once again, ***DO NOT USE THIS SCRIPT ON YOUR DESKTOP OR LAPTOP. IT WILL DESTROY ALL YOUR DATA AND CLEAN FORMAT YOUR DRIVES WITHOUT SO MUCH AS ASKING YOU FIRST. ONLY USE WITH A VM OR AN ISOLATED MACHINE/PRODUCTION NUC***
+  * I will not be liable for your stupidity if you ignore this warning.
 
-1. Plug in wired ethernet connection to nuc
+## Proper Usage
+
+1. Plug in wired ethernet connection to nuc/make sure VM has internet connectrion
 2. Boot up with vanilla arch installer (I will eventually make a custom ISO with the scripts already there)
-3. `curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fgbase.sh`
-4. `curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fgchroot.sh`
-5. `chmod +x fgbase.sh`
-6. `./fgbase.sh`
-7. Confirm that you have an internet connection and the script should handle the rest.
+  * You can find the correct Arch Linux ISO [here](https://www.archlinux.org/download/).
+    * If you use Linux or Mac OS, you'll want to `dd if=ISO_NAME.iso of=/dev/sdX status=progress`
+    * If you use Windows, I strongly recommend using [Rufus](https://rufus.ie/) to prepare your bootable flash drive.
+3. `curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fg.sh && chmod +x fg.sh && ./fg.sh`
+4. The installer should handle the rest. Please attend the installer as you will need to confirm internet connection and enter the passwords for the root and non-root user during the installation. It will pause and wait when it reaches these points. A workaround is being worked on.
 
 ## Special Notes
-* You may need to enter a "y" and hit Enter every once and a while. Just monitor for now. I will remove the need later!
-* There are two scripts here because one needs to be copied over into /mnt/ after it is created, chmodded, and then when the main script does arch-chroot it also passes that script in to be launched automatically. This is the only way to get around us needing to use arch-chroot because this is an installer script.
-
+* There are three scripts here because one needs to be copied over into /mnt/ after it is created, chmodded, and then when the main script does arch-chroot it also passes that script in to be launched automatically. This is the only way to get around us needing to use arch-chroot because this is an installer script.
+* You can start with the fg.sh script, which downloads the other scripts and gives them the necessary permissions to run and starts the first script.
