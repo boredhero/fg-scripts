@@ -85,7 +85,7 @@ pacman -S --noconfirm xorg
 echo -e "\033[1:33m...Install kde plasma\033[0m"
 echo -e "...disabled...uncomment this section and comment this line if you need this feature"
 sleep 1
-#pacman -S --noconfirm plasma
+pacman -S --noconfirm plasma
 #echo -e "\033[1:33mMake a new user!\033[0m"
 #useradd -m freedomgateway
 #gpasswd -a freedomgateway wheel
@@ -98,8 +98,8 @@ pacman -S --noconfirm jdk-openjdk
 echo -e "\033[1:33mInstall and configure SDDM\033[0m"
 echo -e "...disabled...uncomment this section and comment this line if you need this feature"
 sleep 1
-#pacman -S --noconfirm sddm
-#systemctl enable sddm.service
+pacman -S --noconfirm sddm
+systemctl enable sddm.service
 echo -e "\033[1:33mInstall firefox\033[0m"
 sleep 1
 pacman -S --noconfirm firefox
