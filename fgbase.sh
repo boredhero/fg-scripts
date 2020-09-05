@@ -81,7 +81,7 @@ mkswap /dev/sda2
 swapon /dev/sda2
 echo -e "\033[1;33m...Format /dev/sda3 as ext4\033[0m"
 sleep 1
-mkfs.ext4 /dev/sda3
+yes | mkfs.ext4 /dev/sda3
 echo -e
 echo -e "\033[1:33m...Mounting filesystems\033[0m"
 sleep 1
