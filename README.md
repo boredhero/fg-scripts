@@ -12,7 +12,7 @@ FG install scripts WIP
 
 1. Plug in wired ethernet connection to nuc/make sure VM has internet connectrion
 2. Boot up with vanilla arch installer (I will eventually make a custom ISO with the scripts already there)
-  * You can find the correct arch linux latest ISO [here](https://www.archlinux.org/download/).
+  * You can find the correct Arch Linux ISO [here](https://www.archlinux.org/download/).
     * If you use Linux or Mac OS, you'll want to `dd if=ISO_NAME.iso of=/dev/sdX status=progress`
     * If you use Windows, I strongly recommend using [Rufus](https://rufus.ie/) to prepare your bootable flash drive.
 3. `curl -O https://raw.githubusercontent.com/boredhero/fg-scripts/master/fg.sh && chmod +x fg.sh && ./fg.sh`
