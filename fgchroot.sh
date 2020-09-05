@@ -73,18 +73,18 @@ sleep 3
 pacman -Sy --noconfirm
 echo -e "\033[1:33m...Install networkmanager\033[0m"
 sleep 3
-sudo pacman -S --noconfirm networkmanager
+pacman -S --noconfirm networkmanager
 echo -e "\033[1:33m......Enable NetworkManager.service\033[0m"
 sleep 3
-sudo systemctl enable NetworkManager.service
+systemctl enable NetworkManager.service
 echo -e "\033[1:33mPlease set the root password\033[0m"
 passwd
 echo -e "\033[1:33mInstall xorg\033[0m"
 sleep 3
-sudo pacman -S --noconfirm xorg
+pacman -S --noconfirm xorg
 echo -e "\033[1:33m...Install kde plasma\033[0m"
 sleep 3
-sudo pacman -S --noconfirm plasma
+pacman -S --noconfirm plasma
 #echo -e "\033[1:33mMake a new user!\033[0m"
 #useradd -m freedomgateway
 #gpasswd -a freedomgateway wheel
@@ -93,20 +93,20 @@ sudo pacman -S --noconfirm plasma
 #gpasswd -a freedomgateway http
 echo -e "\033[1:33mInstall OpenJDK latest\033[0m"
 sleep 3
-sudo pacman -S --noconfirm jdk-openjdk
+pacman -S --noconfirm jdk-openjdk
 echo -e "\033[1:33mInstall and configure SDDM\033[0m"
 sleep 3
-sudo pacman -S --noconfirm sddm
+pacman -S --noconfirm sddm
 systemctl enable sddm.service
 echo -e "\033[1:33mInstall firefox\033[0m"
 sleep 3
-sudo pacman -S --noconfirm firefox
+pacman -S --noconfirm firefox
 echo -e "\033[1:33mInstall nemo\033[0m"
 sleep 3
-sudo pacman -S --nonconfirm nemo
+pacman -S --nonconfirm nemo
 echo -e "\033[1:33mTry to make silent GRUB type bootloader\033[0m"
 sleep 3
-sudo pacman -S --noconfirm efibootmgr dosfstools os-prober mtools
+pacman -S --noconfirm efibootmgr dosfstools os-prober mtools
 #efibootmgr --disk /dev/sda --part 1 --create --label "FG ATM" --loader /vmlinuz-linux --unicode 'root=PARTUUID=BF934EC8-B3C2-4539-800D-1940DD71BDCB rw initrd=\initramfs-linux.img' --verbose
 # this does not work do not use the efibootmgr command. we're gonna try grub silent now.
 mkdir /boot/EFI
