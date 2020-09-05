@@ -64,38 +64,38 @@ timedatectl set-ntp true
 echo -e "\033[1;33mUpdate the system clock!\033[0m"
 echo -e "\033[1;33Beginning Disk Wipe and Partition...\033[0m"
 fdisk -l
-sleep 3
+sleep 1
 echo -e "\033[1;33m...Kill The Disk and All Her Data! Sacrifice the Bytes to the Ancient Ones!\033[0m"
 sgdisk --zap-all /dev/sda
 echo -e "\033[1;33m...Create /dev/sda\033[0m"
-sleep 3
+sleep 1
 sgdisk -g -n 1:1MiB:512MiB -t 1:ef00 -c 1:"EFI System Partition" /dev/sda
 sgdisk -n 2:513MiB:4608MiB -t 2:8200 -c 2:"Linux Swap Partition" /dev/sda
 sgdisk /dev/sda -N 3 -t 3:8304 -c 3:"Freedom Gateway"
 echo -e "\033[1:33m...Format /dev/sda1 as fat32\033[0m"
-sleep 3
+sleep 1
 mkfs.fat -F32 /dev/sda1
 echo -e "\033[1:33m...Format /dev/sda1 as Linux swap\033[0m"
-sleep 3
+sleep 1
 mkswap /dev/sda2
 swapon /dev/sda2
 echo -e "\033[1;33m...Format /dev/sda3 as ext4\033[0m"
-sleep 3
+sleep 1
 mkfs.ext4 /dev/sda3
 echo -e
 echo -e "\033[1:33m...Mounting filesystems\033[0m"
-sleep 3
+sleep 1
 mount /dev/sda3 /mnt
 mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 echo -e "\033[1:33mInstalling essentials\033[0m"
-sleep 3
+sleep 1
 pacstrap /mnt base linux-lts linux-firmware
 echo -e "\033[1:33mGenerating an fstab\033[0m"
-sleep 3
+sleep 1
 genfstab -U /mnt >> /mnt/etc/genfstab
 echo -e "\033[1:33mchroot into system\033[0m"
-sleep 3
+sleep 1
 cp fgchroot.sh /mnt/
 chmod +x /mnt/fgchroot.sh
 arch-chroot /mnt ./fgchroot.sh
