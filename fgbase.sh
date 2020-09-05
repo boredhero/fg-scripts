@@ -65,7 +65,8 @@ echo -e "\033[1;33mUpdate the system clock!\033[0m"
 echo -e "\033[1;33Beginning Disk Wipe and Partition...\033[0m"
 fdisk -l
 sleep 1
-echo -e "\033[1;33m...Kill The Disk and All Her Data! Sacrifice the Bytes to the Ancient Ones!\033[0m"
+echo -e "\033[1;33m...Kill The Disk and All Her Data! Sacrifice the Bytes to the Ancient Ones! Hail Cthulu!\033[0m"
+sleep 5
 sgdisk --zap-all /dev/sda
 echo -e "\033[1;33m...Create /dev/sda\033[0m"
 sleep 1
