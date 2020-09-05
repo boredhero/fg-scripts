@@ -100,9 +100,9 @@ echo -e "...disabled...uncomment this section and comment this line if you need 
 sleep 1
 pacman -S --noconfirm sddm
 systemctl enable sddm.service
-echo -e "\033[1:33mInstall firefox\033[0m"
+echo -e "\033[1:33mInstall firefox + terminal emulator\033[0m"
 sleep 1
-pacman -S --noconfirm firefox
+pacman -S --noconfirm firefox termite
 echo -e "\033[1:33mInstall nemo\033[0m"
 sleep 1
 pacman -S --nonconfirm nemo
@@ -117,3 +117,10 @@ grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=freed
 sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
 echo 'GRUB_HIDDEN_TIMEOUT_QUIET=true' >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
+echo -e "\033[1:33mSetup a non-root user\033[0m"
+sed 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g' /etc/sudoers > /etc/sudoers.new
+export EDITOR="cp /etc/sudoers.new"
+visudo
+rm /etc/sudoers.new
+useradd -m -g users -G wheel -s /bin/bash freedomgatewayatm
+passwd freedomgatewayatm 
