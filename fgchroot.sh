@@ -53,45 +53,62 @@ echo ""
 echo -e "\033[1;33mWelcome to the Freedom Gateway Linux Installer PART TWO!\033[0m"
 echo -e "\033[1;33mThis is the second of two scripts, and it will handle the tedium of getting the basic system installed automatically.\033[0m"
 echo -e ""
-
+sleep 3
 echo -e "\033[1:33m...HWCLOCK\033[0m"
+sleep 3
 hwclock --systohc
 echo -e "\033[1:33m...Generate locales\033[0m"
+sleep 3
 locale-gen
 echo -e "\033[1:33m...Set the hostname\033[0m"
+sleep 3
 hostnamectl set-hostname freedomgatewayatm
 echo -e "\033[1:33m...Populate the hosts file\033[0m"
+sleep 3
 echo '127.0.0.1 localhost' >> /etc/hosts
 echo '::1 localhost' >> /etc/hosts
 echo '127.0.1.1 freedomgatewayatm.localdomain freedomgatewayatm' >> /etc/hosts
 echo -e "\033[1:33mPacman prep\033[0m"
-yes | pacman -Sy
-yes | pacman -S sudo
+sleep 3
+pacman -Sy --noconfirm
 echo -e "\033[1:33m...Install networkmanager\033[0m"
-yes | sudo pacman -S networkmanager
+sleep 3
+sudo pacman -S --noconfirm networkmanager
 echo -e "\033[1:33m......Enable NetworkManager.service\033[0m"
+sleep 3
 sudo systemctl enable NetworkManager.service
 echo -e "\033[1:33mPlease set the root password\033[0m"
 passwd
 echo -e "\033[1:33mInstall xorg\033[0m"
+sleep 3
 sudo pacman -S --noconfirm xorg
 echo -e "\033[1:33m...Install kde plasma\033[0m"
+sleep 3
 sudo pacman -S --noconfirm plasma
-echo -e "\033[1:33mMake a new user!\033[0m"
-useradd -m freedomgateway
-gpasswd -a freedomgateway wheel
-gpasswd -a freedomgateway rfkill
-gpasswd -a freedomgateway log
-gpasswd -a freedomgateway http
+#echo -e "\033[1:33mMake a new user!\033[0m"
+#useradd -m freedomgateway
+#gpasswd -a freedomgateway wheel
+#gpasswd -a freedomgateway rfkill
+#gpasswd -a freedomgateway log
+#gpasswd -a freedomgateway http
 echo -e "\033[1:33mInstall OpenJDK latest\033[0m"
+sleep 3
 sudo pacman -S --noconfirm jdk-openjdk
 echo -e "\033[1:33mInstall and configure SDDM\033[0m"
+sleep 3
 sudo pacman -S --noconfirm sddm
 systemctl enable sddm.service
 echo -e "\033[1:33mInstall firefox\033[0m"
+sleep 3
 sudo pacman -S --noconfirm firefox
 echo -e "\033[1:33mInstall nemo\033[0m"
+sleep 3
 sudo pacman -S --nonconfirm nemo
-echo -e "\033[1:33mTry to make an EFISTUB bootloader\033[0m"
-sudo pacman -S --noconfirm efibootmgr
-efibootmgr --disk /dev/sda --part 1 --create --label "FG ATM" --loader /vmlinuz-linux --unicode 'root=PARTUUID=BF934EC8-B3C2-4539-800D-1940DD71BDCB rw initrd=\initramfs-linux.img' --verbose
+echo -e "\033[1:33mTry to make silent GRUB type bootloader\033[0m"
+sleep 3
+sudo pacman -S --noconfirm efibootmgr dosfstools os-prober mtools
+#efibootmgr --disk /dev/sda --part 1 --create --label "FG ATM" --loader /vmlinuz-linux --unicode 'root=PARTUUID=BF934EC8-B3C2-4539-800D-1940DD71BDCB rw initrd=\initramfs-linux.img' --verbose
+# this does not work do not use the efibootmgr command. we're gonna try grub silent now.
+mkdir /boot/EFI
+mount /dev/sda1 /boot/EFI
+grub-install --target=x86_64-efi --bootloader-id=freedom_gateway_atm --recheck
