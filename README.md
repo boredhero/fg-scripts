@@ -1,7 +1,7 @@
 # fg-scripts
 FG install scripts WIP
 
-##**WARNING: PLEASE READ THIS SECTION BEFORE USING THIS SCRIPT**
+## **WARNING: PLEASE READ THIS SECTION BEFORE USING THIS SCRIPT**
 1. Under ***NO CIRCUMSTANCES*** should you ever use this on a machine that is not isolated or a VM
   * This script **WILL** destroy any and all data on the first disk in the machine it is plugged into and clean install a customized arch linux on it.
     * You **WILL** irrevocably lose any data previously on the main hard disk in the machine you install this on!!!
