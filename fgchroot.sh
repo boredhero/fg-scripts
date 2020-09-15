@@ -92,9 +92,9 @@ pacman -S --noconfirm plasma
 #gpasswd -a freedomgateway rfkill
 #gpasswd -a freedomgateway log
 #gpasswd -a freedomgateway http
-echo -e "\033[1:33mInstall OpenJDK latest\033[0m"
+echo -e "\033[1:33mInstall OpenJDK latest + OpenJFX latest\033[0m"
 sleep 1
-pacman -S --noconfirm jdk-openjdk
+pacman -S --noconfirm jdk-openjdk java-openjfx
 echo -e "\033[1:33mInstall and configure SDDM\033[0m"
 echo -e "...disabled...uncomment this section and comment this line if you need this feature"
 sleep 1
