@@ -87,7 +87,7 @@ cd yay
 yes | makepkg -si
 cd ..
 echo -e "\033[1:33m...Install some AUR packages...\033[0m"
-yay -S frame
+yes | yay -S frame
 ## Need to edit the PKGBUILD for AUR package grail depends inputproto --> xorgproto
 ## Need to add a section to install touchegg and dependencies via AUR here.
 ## Use git clone and then makepkg but test first to make sure it actually works and doesn't error out
