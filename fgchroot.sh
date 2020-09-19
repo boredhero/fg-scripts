@@ -73,7 +73,7 @@ sleep 1
 pacman -Sy --noconfirm
 echo -e "\033[1:33m...Install networkmanager\033[0m"
 sleep 1
-pacman -S --noconfirm networkmanager nano sudo fakeroot
+pacman -S --noconfirm networkmanager nano sudo fakeroot binutils
 echo -e "\033[1:33m......Enable NetworkManager.service\033[0m"
 sleep 1
 systemctl enable NetworkManager.service
