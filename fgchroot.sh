@@ -73,7 +73,12 @@ sleep 1
 pacman -Sy --noconfirm
 echo -e "\033[1:33m...Install networkmanager\033[0m"
 sleep 1
-pacman -S --noconfirm networkmanager nano sudo fakeroot binutils
+pacman -S --noconfirm networkmanager
+echo -e "\033[1:33m...Install build deps\033[0m"
+sleep 1
+pacman -S --noconfirm nano sudo fakeroot binutils patch make git termite
+## Need to add a section to install touchegg and dependencies via AUR here.
+## Use git clone and then makepkg but test first to make sure it actually works and doesn't error out
 echo -e "\033[1:33m......Enable NetworkManager.service\033[0m"
 sleep 1
 systemctl enable NetworkManager.service
@@ -86,12 +91,6 @@ echo -e "\033[1:33m...Install kde plasma\033[0m"
 echo -e "...disabled...uncomment this section and comment this line if you need this feature"
 sleep 1
 pacman -S --noconfirm plasma
-#echo -e "\033[1:33mMake a new user!\033[0m"
-#useradd -m freedomgateway
-#gpasswd -a freedomgateway wheel
-#gpasswd -a freedomgateway rfkill
-#gpasswd -a freedomgateway log
-#gpasswd -a freedomgateway http
 echo -e "\033[1:33mInstall OpenJDK latest + OpenJFX latest\033[0m"
 sleep 1
 pacman -S --noconfirm jdk-openjdk java-openjfx
@@ -100,10 +99,10 @@ echo -e "...disabled...uncomment this section and comment this line if you need 
 sleep 1
 pacman -S --noconfirm sddm
 systemctl enable sddm.service
-echo -e "\033[1:33mInstall firefox + terminal emulator\033[0m"
+echo -e "\033[1:33mInstall firefox\033[0m"
 sleep 1
-pacman -S --noconfirm firefox termite git
-echo -e "\033[1:33mInstall nemo\033[0m"
+pacman -S --noconfirm firefox
+echo -e "\033[1:33mInstall nemo file manager\033[0m"
 sleep 1
 pacman -S --nonconfirm nemo
 echo -e "\033[1:33mTry to make silent GRUB type bootloader\033[0m"
