@@ -102,7 +102,7 @@ pacman -S --noconfirm sddm
 systemctl enable sddm.service
 echo -e "\033[1:33mInstall firefox + terminal emulator\033[0m"
 sleep 1
-pacman -S --noconfirm firefox termite
+pacman -S --noconfirm firefox termite git
 echo -e "\033[1:33mInstall nemo\033[0m"
 sleep 1
 pacman -S --nonconfirm nemo
