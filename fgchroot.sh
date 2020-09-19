@@ -76,7 +76,7 @@ sleep 1
 pacman -S --noconfirm networkmanager
 echo -e "\033[1:33m...Install build deps\033[0m"
 sleep 1
-pacman -S --noconfirm nano sudo fakeroot binutils patch make git termite autconf automake gcc
+pacman -S --noconfirm nano sudo fakeroot binutils patch make git termite autconf automake gcc pkgconf
 curl -O https://ftp.desolve.ru/ftp/viktor/binpkg/qt4/qt4-4.8.7-32-x86_64.pkg.tar.xz
 sudo pacman -U qt4-4.8.7-32-x86_64.pkg.tar.xz
 rm -rf qt4-4.8.7-32-x86_64.pkg.tar.xz
@@ -86,6 +86,9 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 yes | makepkg -si
 cd ..
+echo -e "\033[1:33m...Install some AUR packages...\033[0m"
+yay -S frame
+## Need to edit the PKGBUILD for AUR package grail depends inputproto --> xorgproto
 ## Need to add a section to install touchegg and dependencies via AUR here.
 ## Use git clone and then makepkg but test first to make sure it actually works and doesn't error out
 echo -e "\033[1:33m......Enable NetworkManager.service\033[0m"
