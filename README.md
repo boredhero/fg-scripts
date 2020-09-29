@@ -25,3 +25,7 @@
 ## Special Notes
 * There are three scripts here because one needs to be copied over into /mnt/ after it is created, chmodded, and then when the main script does arch-chroot it also passes that script in to be launched automatically. This is the only way to get around us needing to use arch-chroot because this is an installer script.
 * You can start with the fg.sh script, which downloads the other scripts and gives them the necessary permissions to run and starts the first script.
+
+## Code Copyright/License
+
+Copyright © 2020, Freedom Gateway LLC, All rights reserved.
