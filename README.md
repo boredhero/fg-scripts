@@ -1,5 +1,9 @@
-# fg-scripts
-FG install scripts WIP
+<p align="center"><img src="https://raw.githubusercontent.com/freedomgateway/fg_branding/master/fg_logo_gold.jpg" alt="drawing" width="300"/></p>
+
+# <p align="center"><b>fg_scripts</b></p>
+<p align="center"><b>Freedom Gateway Arch Linux Install Scripts WIP</b></p>
+
+---
 
 ## **WARNING: PLEASE READ THIS SECTION BEFORE USING THIS SCRIPT**
 1. Under ***NO CIRCUMSTANCES*** should you ever use this on a machine that is not isolated or a VM
