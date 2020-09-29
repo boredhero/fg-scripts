@@ -1,7 +1,7 @@
 <p align="center"><img src="https://raw.githubusercontent.com/freedomgateway/fg_branding/master/fg_logo_gold.jpg" alt="drawing" width="300"/></p>
 
 # <p align="center"><b>fg_scripts</b></p>
-<p align="center"><b>Freedom Gateway Arch Linux Install Scripts WIP</b></p>
+<p align="center"><b><i>Freedom Gateway Arch Linux Install Scripts WIP</i></b></p>
 
 ---
 
