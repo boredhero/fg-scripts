@@ -1,7 +1,7 @@
-<p align="center"><img src="https://raw.githubusercontent.com/freedomgateway/fg_branding/master/fg_logo_gold.jpg" alt="drawing" width="300"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/freedomservicing/fs_branding/master/fs/fs_logo.jpg" alt="drawing" width="300"/></p>
 
-# <p align="center"><b>fg_arch_linux_scripts</b></p>
-<p align="center"><b><i>Freedom Gateway Arch Linux Install Scripts WIP</i></b></p>
+# <p align="center"><b>fs_arch_linux_scripts</b></p>
+<p align="center"><b><i>Freedom Servicing Arch Linux Install Scripts WIP</i></b></p>
 
 ---
 
@@ -28,4 +28,4 @@
 
 ## Code Copyright/License
 
-Copyright © 2020, Freedom Gateway LLC, All rights reserved.
+Copyright © 2020, Freedom Servicing, LLC, All rights reserved.
